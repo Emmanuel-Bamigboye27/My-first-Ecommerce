@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <div>
+            <h1>Ecommerce Application</h1>
+            <input type="text" placeholder="Name of Product" id="product">
+            <input type="text" placeholder="Description" id="describe">
+            <input type="text" placeholder="Price" id="price">
+            <button onclick="checkproduct()">Check</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Name Of Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="show"></tbody>
+        </table>
+    </center>
+    
+     
+    <script>
+        function checkproduct() {
+            var day = new Date()
+            var date = day.toLocaleDateString()
+            var time = day.toLocaleTimeString()
+            var product = product.value
+            var Description = describe.value
+            var price = price.value
+        }
+    </script>
+</body>
+</html>

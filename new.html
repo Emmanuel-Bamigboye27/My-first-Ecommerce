@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <div class="bod">
+        <center>
+            <div class="main">
+                <h1 style="text-decoration: underline; color: white; font-size: 50px;">Ecommerce Application</h1>
+            <input class="input"  type="text" placeholder="Name Of Product" id="todoTitle" style="height: 70px; border: none;">
+            <input class="input" type="text" placeholder="Description" id="todoDetails" style="height: 70px; border: none;">
+            <input type="text" placeholder="Price" id="todoPrice" style="height: 70px; border: none;">
+            <button class="add-btn" id="btn" onclick="submitTodo()" style="height: 50px;"> Add</button>
+        <div class="result">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20px;">S/N</th>
+                        <th>Name of product</th>
+                        <th style="width: 70px;">Description</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+                <tbody id="show"></tbody>
+            </table>
+        </div>
+        
+            </div>
+        </center>
+    </div>
+        
+    </div>
+    
+   
+    
+
+    <script>
+        var todoArray = [];
+
+        // button to submit todo
+     function submitTodo() {
+        var day = new Date()
+        var date = day.toLocaleDateString()
+        var time = day.toLocaleTimeString()
+        var title = todoTitle.value
+        var details = todoDetails.value
+        var price = todoPrice.value
+
+       var todoObj = {
+           title,
+           details,
+           price,
+           date,
+           time
+       }
+
+       if (title == '' & details == '' & price == '') {
+        alert('fill in your todos')
+       } else {
+        todoArray.push(todoObj)
+       document.getElementById('todoTitle').value = ""
+       document.getElementById('todoDetails').value = ""
+      renderTodo()
+      document.getElementById('todoPrice').value = ""
+       }
+    }
+    
+ 
+    function renderTodo() {
+    show.innerHTML = "";
+    todoArray.map((tod, ind) => {
+    
+    var row = `
+    <tr>
+        <td>${ind + 1}</td>
+        <td>${tod.title}</td>
+        <td class= "spec-td" >${tod.details}</td>
+        <td>${tod.price}</td>
+        <td>${tod.date}</td>
+        <td>${tod.time}</td>
+        <td class="btn-div" ><button style="margin-right: 10px;" onclick="deleteTodo(${ind})">Del</button> 
+        <button onclick="editTodo(${ind})">Edit</button>
+        </td>
+        </tr>
+        `;
+
+        show.innerHTML += row;
+})
+        }
+           function deleteTodo(ind) {
+            todoArray.splice(ind, 1)
+            renderTodo()           
+      }
+
+      function editTodo(ind) {
+        var newTitle = prompt('What is your new Product');
+        var newDetails = prompt('What is your new description');
+        var newPrice = prompt('What is your new price')
+       
+            todoArray[ind].title = newTitle;
+        todoArray[ind].details = newDetails;
+        todoArray[ind].price = newPrice
+        renderTodo();
+      
+       
+      }
+      todoDetails.addEventListener('keydown', function(key) {
+            if (key.code === 'Enter') {
+                 submitTodo();
+            }
+        })
+         
+     
+     
+
+     
+
+      
+    </script>
+</body>
+</html>
